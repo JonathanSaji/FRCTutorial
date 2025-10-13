@@ -17,6 +17,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   /** Creates a new DrivetrainSubsystem. */
   public DrivetrainSubsystem() {
 
+    //intializes each motor to respective port
     leftFront = new WPI_TalonRX(1);
     leftBack = new WPI_TalonRX(2);
     rightFront = new WPI_TalonRX(3);
@@ -24,16 +25,19 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     leftFront.setInverted(true);
 
+    //respective motor follows its own side motor
     leftBack.follow(leftFront);
     rightBack.follow(rightFront);
 
     drive = new DifferentialDrive(leftFront,rightFront);
   }
 
+  //sets the speed of tankdrive (foward?)
   public void setSpeedTank(double leftSpeed, double rightSpeed){
     drive.tankDrive(leftSpeed,rightSpeed);
   }
 
+  //sets the speed of arcade drive (turning?)
   public void setSpeedArcade(double speed, double rotation){
     drive.arcadeDrive(speed,rotation);
   }
