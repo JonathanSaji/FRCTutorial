@@ -19,7 +19,7 @@ public class TankdriveCommand extends Command {
     this.drivetrainSubsystem = drivetrainSubsystem;
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
-    addRequirements(getRequirements());
+    addRequirements(this.drivetrainSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,7 +31,7 @@ public class TankdriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrainSubsystem.setSpeedTank(leftSpeed.getAsDouble(), leftSpeed.getAsDouble());
+    drivetrainSubsystem.tankDrive(leftSpeed.getAsDouble(), rightSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

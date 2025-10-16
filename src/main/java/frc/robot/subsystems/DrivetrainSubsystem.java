@@ -36,22 +36,22 @@ public class DrivetrainSubsystem extends SubsystemBase {
     drive = new DifferentialDrive(leftFront,rightFront);
   }
 
-  //sets the speed of tankdrive (foward?)
-  public void setSpeedTank(double leftSpeed, double rightSpeed){
+  //sets the speed of tankdrive 
+  public void tankDrive(double leftSpeed, double rightSpeed){
     drive.tankDrive(leftSpeed,rightSpeed);
   }
 
-  //sets the speed of arcade drive (turning?)
-  public void setSpeedArcade(double speed, double rotation){
+  //sets the speed of arcade drive 
+  public void arcadeDrive(double speed, double rotation){
     drive.arcadeDrive(speed,rotation);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Left Front", leftFront.get());
-    SmartDashboard.putNumber("Right Front", rightFront.get());
-    SmartDashboard.putNumber("Left Back", leftBack.get());
-    SmartDashboard.putNumber("Right Back", rightBack.get());
+    SmartDashboard.putNumber("Left Front Motor: ", leftFront.get());
+    SmartDashboard.putNumber("Right Front Motor: ", rightFront.get());
+    SmartDashboard.putNumber("Left Back Motor: ", leftBack.get());
+    SmartDashboard.putNumber("Right Back Motor: ", rightBack.get());
   }
 }
