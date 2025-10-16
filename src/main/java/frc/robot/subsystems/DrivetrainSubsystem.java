@@ -6,11 +6,15 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class DrivetrainSubsystem extends SubsystemBase {
-  WPI_TalonRX leftFront;
-  WPI_TalonRX leftBack;
-  WPI_TalonRX rightFront;
-  WPI_TalonRX rightBack;
+  WPI_TalonSRX leftFront;
+  WPI_TalonSRX leftBack;
+  WPI_TalonSRX rightFront;
+  WPI_TalonSRX rightBack;
 
   DifferentialDrive drive;
 
@@ -18,10 +22,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public DrivetrainSubsystem() {
 
     //intializes each motor to respective port
-    leftFront = new WPI_TalonRX(1);
-    leftBack = new WPI_TalonRX(2);
-    rightFront = new WPI_TalonRX(3);
-    rightBack = new WPI_TalonRX(4);
+    leftFront = new WPI_TalonSRX(1);
+    leftBack = new WPI_TalonSRX(2);
+    rightFront = new WPI_TalonSRX(3);
+    rightBack = new WPI_TalonSRX(4);
 
     leftFront.setInverted(true);
 
@@ -45,5 +49,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Left Front", leftFront.get());
+    SmartDashboard.putNumber("Right Front", rightFront.get());
+    SmartDashboard.putNumber("Left Back", leftBack.get());
+    SmartDashboard.putNumber("Right Back", rightBack.get());
   }
 }
