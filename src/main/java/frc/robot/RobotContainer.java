@@ -31,8 +31,8 @@ public class RobotContainer {
   private final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
   private final TankdriveCommand tankdriveCommand = new TankdriveCommand(
     drivetrainSubsystem, 
-    () -> m_driverController.getLeftY(), 
-    () -> m_driverController.getRightY());
+    () -> -m_driverController.getLeftY(), 
+    () -> -m_driverController.getRightY());
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
