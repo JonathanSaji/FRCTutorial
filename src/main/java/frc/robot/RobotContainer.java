@@ -10,10 +10,8 @@ import frc.robot.commands.TankdriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
+
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -38,6 +37,7 @@ public class RobotContainer {
     () -> -m_driverController.getLeftY(), 
     () -> -m_driverController.getRightY());
 
+  private final Command simpleAuto = new TankdriveCommand(drivetrainSubsystem, () -> -0.8, () -> -0.8).withTimeout(10); 
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -45,6 +45,9 @@ public class RobotContainer {
     // Configure the trigger bindings
     drivetrainSubsystem.setDefaultCommand(tankdriveCommand);
     configureBindings();
+	
+	autoChooser.setDefaultOption("Drive 10s", simpleAuto);
+	SmartDashboard.putData(autoChooser);
   }
 
   /**
@@ -75,11 +78,6 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return autoChooser.getSelected();
   }
-  public void configureAutos(){
-	autoChooser.setDefaultOption("Do Nothing", new InstantCommand());
-	autoChooser.addOption("Drive 10s", new TankdriveCommand(drivetrainSubsystem, () -> 0.5, () -> 0.5));
-	SmartDashboard.putData("Auto List", autoChooser);
-
-  }
+  
 
 }

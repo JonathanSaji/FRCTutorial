@@ -40,4 +40,8 @@ public class ExampleCommand extends Command {
   public boolean isFinished() {
     return false;
   }
+
+  public void printTest(){
+    System.out.println("W's In the Chat");
+  }
 }
